@@ -5,8 +5,7 @@ import { notFound } from "next/navigation"
 import { getEventBySlug } from "@/lib/api/events"
 
 export default async function EventPage({ params }: { params: { slug: string } }) {
-  const { slug } = params
-  const event = await getEventBySlug(slug)
+  const event = await getEventBySlug(params.slug)
 
   if (!event) {
     notFound()

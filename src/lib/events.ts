@@ -2,7 +2,7 @@ import type { Event } from "@/types"
 
 // This would typically fetch from a database or CMS
 // For now, we're using static data
-const events: Record<string, Event> = {
+export const events: Record<string, Event> = {
   "national-hate-crime-awareness-week": {
     title: "National Hate Crime Awareness Week",
     date: "October 18, 2024",
@@ -45,10 +45,7 @@ const events: Record<string, Event> = {
     date: "February 28, 2024",
     location: "Houses of Parliament, London, UK",
     slug: "keeping-hatred-off-our-streets",
-    excerpt: "The Women's Faith Forum  London, UK",
-    slug: "keeping-hatred-off-our-streets",
-    excerpt:
-      "The Women's Faith Forum's inaugural event at the Houses of Parliament brought together women from diverse faith backgrounds to address the rise of Islamophobia and antisemitism in the UK. Hosted by MP Marsha de Cordova and featuring Shadow Home Secretary Yvette Cooper, the event focused on how women of faith can help heal divisions and combat hate.",
+    excerpt: "The Women's Faith Forum's inaugural event at the Houses of Parliament brought together women from diverse faith backgrounds to address the rise of Islamophobia and antisemitism in the UK. Hosted by MP Marsha de Cordova and featuring Shadow Home Secretary Yvette Cooper, the event focused on how women of faith can help heal divisions and combat hate.",
     content: `
     <h2>The Women's Faith Forum Inaugural Event</h2>
     <p>In response to the alarming rise of Islamophobia and antisemitism in the UK, the Women's Faith Forum held its inaugural event at the Houses of Parliament on February 28, 2024. The event brought together women from diverse faith backgrounds to share experiences, possible solutions, and practical ways women of faith can help heal divisions and work together to combat hate.</p>

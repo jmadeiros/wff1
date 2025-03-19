@@ -124,15 +124,15 @@ export default function Header() {
         <NavigationMenu className="-mt-1">
           <NavigationMenuList className="flex items-center pt-3">
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-white bg-transparent hover:bg-white/10 data-[state=open]:bg-white/10">
+              <NavigationMenuTrigger className="custom-nav-trigger">
                 About
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-black/30 backdrop-blur-md">
+              <NavigationMenuContent className="custom-nav-content">
                 <ul className="grid gap-2 p-4 md:w-[350px] lg:w-[450px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
                     <NavigationMenuLink asChild>
                       <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-purple-500/20 to-purple-900/20 p-4 no-underline outline-none focus:shadow-md"
+                        className="feature-link gradient-purple"
                         href="#about"
                         onClick={(e) => {
                           e.preventDefault()
@@ -164,15 +164,15 @@ export default function Header() {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-white bg-transparent hover:bg-white/10 data-[state=open]:bg-white/10">
+              <NavigationMenuTrigger className="custom-nav-trigger">
                 Events
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-black/30 backdrop-blur-md">
+              <NavigationMenuContent className="custom-nav-content">
                 <ul className="grid gap-2 p-4 md:w-[350px] lg:w-[450px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
                     <NavigationMenuLink asChild>
                       <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-orange-500/20 to-red-900/20 p-4 no-underline outline-none focus:shadow-md"
+                        className="feature-link gradient-orange"
                         href="#events"
                         onClick={(e) => {
                           e.preventDefault()
@@ -204,15 +204,15 @@ export default function Header() {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-white bg-transparent hover:bg-white/10 data-[state=open]:bg-white/10">
+              <NavigationMenuTrigger className="custom-nav-trigger">
                 Publications
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-black/30 backdrop-blur-md">
+              <NavigationMenuContent className="custom-nav-content">
                 <ul className="grid gap-2 p-4 md:w-[350px] lg:w-[450px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
                     <NavigationMenuLink asChild>
                       <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-blue-500/20 to-purple-900/20 p-4 no-underline outline-none focus:shadow-md"
+                        className="feature-link gradient-blue"
                         href="#publications"
                         onClick={(e) => {
                           e.preventDefault()
@@ -250,7 +250,7 @@ export default function Header() {
                     Contact
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-80 backdrop-blur-md bg-black/30 border-white/20 shadow-lg">
+                <PopoverContent className="custom-popover-content">
                   <div className="space-y-4 p-2">
                     <h3 className="font-medium text-lg text-white">Contact Us</h3>
                     <div className="space-y-2">
@@ -296,14 +296,11 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
         <NavigationMenuLink asChild>
           <a
             ref={ref}
-            className={cn(
-              "block select-none space-y-0.5 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-white/5 hover:text-white focus:bg-white/10 focus:text-white",
-              className,
-            )}
+            className={cn("list-item-link", className)}
             {...props}
           >
-            <div className="text-sm font-medium leading-none text-white">{title}</div>
-            <p className="line-clamp-2 text-sm leading-snug text-white/70">{children}</p>
+            <div className="list-item-title">{title}</div>
+            <p className="list-item-desc">{children}</p>
           </a>
         </NavigationMenuLink>
       </li>

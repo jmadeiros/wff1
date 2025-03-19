@@ -3,8 +3,18 @@ import { ChevronLeft } from "lucide-react"
 import WaveBackground from "@/components/layout/WaveBackground"
 import { notFound } from "next/navigation"
 import { getBlogPostBySlug } from "@/lib/api/blog"
+import { blogPosts } from "@/lib/blog"
+
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+  // Generate params for all blog post slugs
+  return Object.keys(blogPosts).map(slug => ({
+    slug
+  }))
+}
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
+  // Pass params.slug directly to the function without destructuring
   const post = await getBlogPostBySlug(params.slug)
 
   if (!post) {

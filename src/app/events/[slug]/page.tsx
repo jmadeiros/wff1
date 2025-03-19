@@ -3,6 +3,15 @@ import { ChevronLeft } from "lucide-react"
 import WaveBackground from "@/components/layout/WaveBackground"
 import { notFound } from "next/navigation"
 import { getEventBySlug } from "@/lib/api/events"
+import { events } from "@/lib/events"
+
+// Generate static params for all events
+export async function generateStaticParams() {
+  // Generate params for all event slugs
+  return Object.keys(events).map(slug => ({
+    slug
+  }))
+}
 
 export default async function EventPage({ params }: { params: { slug: string } }) {
   const event = await getEventBySlug(params.slug)

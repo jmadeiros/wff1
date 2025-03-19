@@ -10,7 +10,7 @@ import Footer from "@/components/layout/Footer"
 
 export default function Home() {
   return (
-    <main className="min-h-screen relative bg-background text-foreground">
+    <main className="min-h-screen relative">
       <WaveBackground />
       <div className="relative min-h-screen">
         <FloatingImages />

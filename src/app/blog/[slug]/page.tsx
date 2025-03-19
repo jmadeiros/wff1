@@ -4,9 +4,14 @@ import WaveBackground from "@/components/layout/WaveBackground"
 import { notFound } from "next/navigation"
 import { getBlogPostBySlug } from "@/lib/api/blog"
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const { slug } = params
-  const post = await getBlogPostBySlug(slug)
+interface BlogPostParams {
+  params: {
+    slug: string
+  }
+}
+
+export default async function BlogPost({ params }: BlogPostParams) {
+  const post = await getBlogPostBySlug(params.slug)
 
   if (!post) {
     notFound()

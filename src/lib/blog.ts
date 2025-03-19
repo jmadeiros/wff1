@@ -2,7 +2,7 @@ import type { BlogPost } from "@/types"
 
 // This would typically fetch from a database or CMS
 // For now, we're using static data
-const blogPosts: Record<string, BlogPost> = {
+export const blogPosts: Record<string, BlogPost> = {
   "women-of-faith-have-human-rights-too": {
     title: "Women of Faith have Human Rights Too",
     author: "Dr Jagbir Jhutti-Johal OBE",

@@ -9,6 +9,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Check } from "lucide-react"
+import { db } from "@/lib/firebase"
+import { collection, addDoc } from "firebase/firestore"
 
 export default function UpcomingEvents() {
   const upcomingEvents = [
@@ -81,31 +83,42 @@ function InterestButton({ event }: { event: { title: string; date: string; locat
   const [email, setEmail] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError("")
 
-    // Simulate API call with a delay
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      // Add the registration to Firestore
+      await addDoc(collection(db, "eventinterest"), {
+        email,
+        eventTitle: event.title,
+        eventDate: event.date,
+        eventLocation: event.location,
+        registeredAt: new Date().toISOString(),
+      })
 
-    // In a real app, you would send this data to your backend
-    console.log("Registered interest for event:", event.title, "with email:", email)
+      setIsSubmitting(false)
+      setIsSubmitted(true)
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-
-    // Auto close after successful submission after 3 seconds
-    setTimeout(() => {
-      if (isSubmitted) {
-        setOpen(false)
-        // Reset form after closing
-        setTimeout(() => {
-          setIsSubmitted(false)
-          setEmail("")
-        }, 300)
-      }
-    }, 3000)
+      // Auto close after successful submission after 3 seconds
+      setTimeout(() => {
+        if (isSubmitted) {
+          setOpen(false)
+          // Reset form after closing
+          setTimeout(() => {
+            setIsSubmitted(false)
+            setEmail("")
+          }, 300)
+        }
+      }, 3000)
+    } catch (err) {
+      setIsSubmitting(false)
+      setError("Failed to register interest. Please try again later.")
+      console.error("Error registering interest:", err)
+    }
   }
 
   const handleOpenChange = (newOpen: boolean) => {
@@ -115,6 +128,7 @@ function InterestButton({ event }: { event: { title: string; date: string; locat
       setTimeout(() => {
         setIsSubmitted(false)
         setEmail("")
+        setError("")
       }, 300)
     }
   }
@@ -157,6 +171,7 @@ function InterestButton({ event }: { event: { title: string; date: string; locat
                   className="bg-white/10 border-white/20 text-white placeholder:text-white/40"
                 />
               </div>
+              {error && <p className="text-red-400 text-sm">{error}</p>}
               <Button type="submit" disabled={isSubmitting} className="w-full bg-white/10 hover:bg-white/20 text-white">
                 {isSubmitting ? "Submitting..." : "Register your interest"}
               </Button>

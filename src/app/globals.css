@@ -163,3 +163,11 @@
 .list-item-desc {
   @apply line-clamp-2 text-sm leading-snug text-white/70;
 }
+
+/* Event image styling */
+.prose img {
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
